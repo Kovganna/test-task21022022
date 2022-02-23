@@ -10,11 +10,11 @@ const {
 const router = express.Router();
 const userControllers = new UserControllers();
 
+router.get("/", userControllers.getUsers);
+
 router.post("/", validationCreate, userControllers.addUser);
 
 router.patch("/:id", validationUpdate, userControllers.updateUser);
-
-router.get("/", userControllers.getUsers);
 
 router.delete("/:id", validationId, userControllers.removeUser);
 

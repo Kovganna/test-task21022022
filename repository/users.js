@@ -22,7 +22,7 @@ const getUserById = async (userId) => {
 };
 
 const removeUser = async (userId) => {
-  const result = await User.findOneAndRemove(userId);
+  const result = await User.findOneAndRemove({ _id: userId });
   return result;
 };
 

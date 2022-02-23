@@ -37,16 +37,15 @@ class UserControllers {
   async removeUser(req, res, _next) {
     const { id } = req.params;
 
-    const user = await repositoryUsers.removeUser(id);
-    if (user) {
-      return res
-        .status(HttpCode.OK)
-        .json({
-          status: "success",
-          code: HttpCode.OK,
-          massage: "User was deleted!",
-        });
+    const deleteUser = await repositoryUsers.removeUser(id);
+    console.log(deleteUser);
+    if (deleteUser) {
     }
+    return res.status(HttpCode.OK).json({
+      status: "success",
+      code: HttpCode.OK,
+      data: { deleteUser },
+    });
     res.status(HttpCode.NOT_FOUND).json({
       status: "error",
       code: HttpCode.NOT_FOUND,
