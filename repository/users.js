@@ -16,9 +16,8 @@ const listUsers = async ({ sortBy, sortByDesc, filter, skip = 0 }) => {
   return { users: result };
 };
 
-const getUserById = async (userId) => {
-  const result = await User.findOne(userId);
-  return result;
+const findByEmail = async (email) => {
+  return await User.findOne({ email });
 };
 
 const removeUser = async (userId) => {
@@ -33,7 +32,7 @@ const addUser = async (body) => {
 
 const updateUser = async (userId, body) => {
   const result = await User.findOneAndUpdate(
-    userId,
+    { _id: userId },
     { ...body },
     { new: true }
   );
@@ -42,8 +41,8 @@ const updateUser = async (userId, body) => {
 
 module.exports = {
   listUsers,
-  getUserById,
   removeUser,
   addUser,
   updateUser,
+  findByEmail,
 };
